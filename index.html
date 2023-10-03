@@ -6,6 +6,30 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="target/">link</a>
 </body>
+<script>
+    var filenames=[], foldernames=[];
+    var url = "https://udithb.github.io/test/target/";
+    var req = new XMLHttpRequest();
+    req.open("GET",url,true);
+    req.onreadystatechange=function(){
+        if(req.readyState === 4)
+        {
+            document.write(req.responseText);
+            getNames();
+        }
+    };
+    req.send();
+    
+    function getNames()
+    {
+        var files = document.querySelectorAll("a.icon.file");
+        var folders = document.querySelectorAll("a.icon.dir");
+        files.forEach(function(item){filenames.push(item.textContent)})
+        folders.forEach(function(item){foldernames.push(item.textContent.slice(0,-1))})
+        console.log(filenames);
+        console.log(foldernames);
+    }
+    
+</script>
 </html>
